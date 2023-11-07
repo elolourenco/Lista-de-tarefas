@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Todo from './components/todo'
+import Todo from './components/Todo'
+import TodoForm from './components/TodoForm'
 
 
 
@@ -36,7 +37,9 @@ return (
           
       ))}
     </div>
+    <TodoForm />
   </div>
+
 )
 }
  export default App
