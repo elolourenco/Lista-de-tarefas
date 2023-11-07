@@ -6,9 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+id_rsa_acerkey*
+id_rsa_acerkey.pub*
 
-id_rsa_acerkey
-id_rsa_acerkey.pub
 node_modules
 dist
 dist-ssr
