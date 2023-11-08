@@ -5,10 +5,7 @@ body {
     color: #333;
     background-image:url('./assets/img-tarefa.jpg') ;
     background-position: center;
-    background-size: cover;
-    
-  
-  
+    background-size: cover;  
   }
   
   .app {
@@ -21,9 +18,11 @@ body {
   h1{
     text-align: center;
   }
+
   h2{
     margin-bottom: 10px;
   }
+
   p{
     margin: 10px 0;
   }
@@ -46,21 +45,33 @@ body {
   button:hover {
    opacity: 1; 
   }
+
+  .todo-list {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid#555;
+  }
+
+  /* .todo {
+    background-color: #fff;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom:10px ;
+    border-radius: 5px;
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+}   */
+  
   .complete{
     background-color:#5cb85c ;
-  
   }
+
   .remove{
     background-color: #d9534f;
   }
-  
-  .complete {
-    background-color: #5cb85c;
-  }
-  
-  .remove {
-    background-color: #d9534f;
-  }
+   
   
   .todo-form {
     padding-bottom: 1.5rem;
