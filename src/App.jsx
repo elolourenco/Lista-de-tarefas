@@ -1,101 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './App.css';
+import TodoForm from './componentes/todoForm'
+import Todo from './componentes/todo';
 
-const Styleheader = {
-  background: 'Aquamarine',
-  border: '1px solid black',
-  margin: '5px',
-  borderRadius: '10px',
-  padding: '5px'
-}
-
-const StyleMain = {
-  background: 'PaleTurquoise',
-  border: '1px solid black',
-  margin: '5px',
-  textAlign: 'center',
-  borderRadius: '10px'
-}
-
-const StyleBtnAdd =  {
-  margin: '5px',
-  fontSize: '25px',
-  padding: '5px',
-  border: '1px solid black',
-  borderRadius: '10px',
-}
-
-const StylelistAddMain = {
-  background: 'blue',
-  width: '200px',
-  margin: '10px',
-  borderRadius: '5px',
-  paddingLeft: '7px',
-  paddingRight: '7px'
-}
-
-const StyleBtnList = {
-  margin:'5px'
-}
-
-const TitleList = {
-  margin: '0px'
-}
-
-const AddList = () => {
-  return (
-    <div style={StylelistAddMain} id='listAddMain'>
-      <h2 style={TitleList}>Aqui consta uma nova lista</h2>
-      <button style={StyleBtnList}>ver lista</button>
-    </div>
-  )
-}
-
-const Btn = () => {
-  return (
-    <button style={StyleBtnAdd} id='btnadd' onClick={AddList}>Nova lista</button>
-  )  
-}
-
-const TitleMain = () => {
-  return (
-  <h1>Listas Adicionadas</h1>
-  )
-}
-
-const BtnOcult = () => {
-  const [EstateBtnOcultHeader, SetEstateBtnOcultHeader] = React.useState(true)
-
-  function EstateBtncActive(){
-    SetEstateBtnOcultHeader(!EstateBtnOcultHeader)
-  }
-  return (
-    <button id='BtnOcultHeader' onClick={EstateBtncActive}>{EstateBtnOcultHeader ? 'ᐃ' : 'ᐁ'}</button>
-  )
-
-}
-
-const HeaderList=()=>{
-  return (
-    <header style={Styleheader}>
-      <div>
-        <BtnOcult />
-      </div>
-      <div>
-        <Btn />
-      </div>
-    </header>
-  )
-}
 
 function App() {
+  const [todos, setTodos] = useState(
+  [{
+    id: 1,
+    text: 'Estudar react',
+    category: 'estudos',
+    isCompleted: false
+  },
+  {
+    id: 2,
+    text: 'Estudar css',
+    category: 'estudos',
+    isCompleted: false
+  },
+  {
+    id: 3,
+    text: 'Estudar javascrip',
+    category: 'estudos',
+    isCompleted: false
+  }
+  ]);
+
+  const AddTodo = (text, category) => {
+
+    const newTodo = [...todos,{
+      id: Math.floor(Math.random()*10000),
+      text,
+      category,
+      isCompleted: false
+    }]
+    setTodos(newTodo)
+  }
+
+  const removeTodo = (id) => {
+    const newTodos = [...todos]
+    const filterTodos = newTodos.filter(todo => todo.id !== id ? todo : null)
+    setTodos(filterTodos)
+  }
+
+  const completeTodo = (id) => {
+    const newTodos = [...todos]
+    newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo)
+    setTodos(newTodos)
+  }
+  
+
   return (
-      <div>
-        <HeaderList />
-        <main style={StyleMain} id='mainList'>
-          <TitleMain />
-          <AddList />
-        </main>
+    <div className='app'>
+      <h1>Lista de tarefas</h1>
+      <div className='todo-list'>
+        {todos.map((todo) => (
+          <Todo key={todos.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo} />
+        ))}
       </div>
+      <TodoForm AddTodo={AddTodo} />
+    </div>
   )
 }
 
